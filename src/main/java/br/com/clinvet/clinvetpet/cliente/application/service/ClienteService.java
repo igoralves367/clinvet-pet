@@ -5,6 +5,7 @@ import java.util.UUID;
 
 import javax.validation.Valid;
 
+import br.com.clinvet.clinvetpet.cliente.application.api.ClienteAlteracaoRequest;
 import br.com.clinvet.clinvetpet.cliente.application.api.ClienteDetalhadoResponse;
 import br.com.clinvet.clinvetpet.cliente.application.api.ClienteListResponse;
 import br.com.clinvet.clinvetpet.cliente.application.api.ClienteRequest;
@@ -15,5 +16,6 @@ public interface ClienteService {
 	List<ClienteListResponse> buscaTodosClintes();
 	ClienteDetalhadoResponse buscaClienteAtravesId(UUID idCliente);
 	void deletaClienteAtravesId(UUID idCliente);
+	void pathAlteraCliente(UUID idCliente, @Valid ClienteAlteracaoRequest clienteAlteracaoRequest);
 
 }

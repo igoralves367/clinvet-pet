@@ -7,6 +7,7 @@ import javax.validation.Valid;
 
 import org.springframework.stereotype.Service;
 
+import br.com.clinvet.clinvetpet.cliente.application.api.ClienteAlteracaoRequest;
 import br.com.clinvet.clinvetpet.cliente.application.api.ClienteDetalhadoResponse;
 import br.com.clinvet.clinvetpet.cliente.application.api.ClienteListResponse;
 import br.com.clinvet.clinvetpet.cliente.application.api.ClienteRequest;
@@ -53,6 +54,14 @@ public class ClienteApplicationService implements ClienteService {
 		Cliente cliente = clienteRepository.buscaClienteAtravesId(idCliente);
 		clienteRepository.deletaCliente(cliente);
 		log.info("[finaliza] ClienteApplicationService - deletaClienteAtravesId");
+		
+	}
+
+	@Override
+	public void pathAlteraCliente(UUID idCliente, @Valid ClienteAlteracaoRequest clienteAlteracaoRequest) {
+		log.info("[inicia] ClienteApplicationService - pathAlteraCliente");
+		Cliente cliente = clienteRepository.buscaClienteAtravesId(idCliente);
+		log.info("[finaliza] ClienteApplicationService - pathAlteraCliente");
 		
 	}
 }
