@@ -3,10 +3,12 @@ package br.com.clinvet.clinvetpet.cliente.infra;
 import java.util.List;
 import java.util.UUID;
 
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Repository;
 
 import br.com.clinvet.clinvetpet.cliente.application.repository.ClienteRepository;
 import br.com.clinvet.clinvetpet.cliente.domain.Cliente;
+import br.com.clinvet.clinvetpet.handler.APIException;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 @Repository
@@ -34,8 +36,10 @@ public class ClienteInfraRepository implements ClienteRepository {
 	@Override
 	public Cliente buscaClienteAtravesId(UUID idCliente) {
 		log.info("[inicia] ClienteInfraRepository - buscaClienteAtravesId");
+		Cliente cliente = clienteSpringaDataJPARepository.findById(idCliente)
+		.orElseThrow(() -> APIException.build(HttpStatus.NOT_FOUND, "CLIENTE NÃO ENCONTRADO"));
 		log.info("[finaliza] ClienteInfraRepository - buscaClienteAtravesId");
-		return null;
+		return cliente;
 	}
 
 }
