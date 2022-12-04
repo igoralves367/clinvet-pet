@@ -1,5 +1,7 @@
 package br.com.clinvet.clinvetpet.cliente.infra;
 
+import java.util.List;
+
 import org.springframework.stereotype.Repository;
 
 import br.com.clinvet.clinvetpet.cliente.application.repository.ClienteRepository;
@@ -18,6 +20,13 @@ public class ClienteInfraRepository implements ClienteRepository {
 		clienteSpringaDataJPARepository.save(cliente);
 		log.info("[finaliza] ClienteInfraRepository - salva");
 		return cliente;
+	}
+
+	@Override
+	public List<Cliente> buscaTodosClientes() {
+		log.info("[inicia] ClienteInfraRepository - buscaTodosClientes");
+		log.info("[finaliza] ClienteInfraRepository - buscaTodosClientes");
+		return null;
 	}
 
 }
