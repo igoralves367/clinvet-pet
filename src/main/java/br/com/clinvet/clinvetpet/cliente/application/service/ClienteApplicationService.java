@@ -61,6 +61,8 @@ public class ClienteApplicationService implements ClienteService {
 	public void pathAlteraCliente(UUID idCliente, @Valid ClienteAlteracaoRequest clienteAlteracaoRequest) {
 		log.info("[inicia] ClienteApplicationService - pathAlteraCliente");
 		Cliente cliente = clienteRepository.buscaClienteAtravesId(idCliente);
+		cliente.altera(clienteAlteracaoRequest);
+		clienteRepository.salva(cliente);
 		log.info("[finaliza] ClienteApplicationService - pathAlteraCliente");
 		
 	}
