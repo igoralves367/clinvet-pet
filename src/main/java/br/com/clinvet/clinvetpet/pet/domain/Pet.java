@@ -11,9 +11,11 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.validation.Valid;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
+import br.com.clinvet.clinvetpet.pet.application.api.PetRequest;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -23,6 +25,7 @@ import lombok.NoArgsConstructor;
 @Getter
 @Entity
 public class Pet {
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(columnDefinition = "uuid", name = "idPet", updatable = false, unique = true, nullable = false)
@@ -50,5 +53,18 @@ public class Pet {
 
 	private LocalDateTime dataHoraDoCadastro;
 	private LocalDateTime dataHoraDaUltimaAlteracao;
-
+	
+	public Pet(UUID idCliente, @Valid PetRequest petRequest) {
+		this.idClienteTutor =idCliente;
+		this.nomePet = petRequest.getNomePet();
+		this.porte = petRequest.getPorte();
+		this.tipo = petRequest.getTipo();
+		this.microchip = petRequest.getMicrochip();
+		this.raca = petRequest.getRaca();
+		this.sexo = petRequest.getSexo();
+		this.pelagemCor = petRequest.getPelagemCor();
+		this.dataNascimento = petRequest.getDataNascimento();
+		this.peso = petRequest.getPeso();
+		this.dataHoraDoCadastro = LocalDateTime.now();
+	}
 }
