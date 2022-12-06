@@ -1,5 +1,8 @@
 package br.com.clinvet.clinvetpet.pet.infra;
 
+import java.util.List;
+import java.util.UUID;
+
 import org.springframework.stereotype.Repository;
 
 import br.com.clinvet.clinvetpet.pet.application.repository.PetRepository;
@@ -19,6 +22,13 @@ public class PetInfraRepository implements PetRepository {
 		petSpringDataJPARepository.save(pet);
 		log.info("[finaliza] PetInfraRepository - salvaPet");
 		return pet;
+	}
+
+	@Override
+	public List<Pet> buscaPetsDoClienteComId(UUID idCliente) {
+		log.info("[inicia] PetInfraRepository - buscaPetsDoClienteComId");
+		log.info("[finaliza] PetInfraRepository - buscaPetsDoClienteComId");
+		return null;
 	}
 
 }
