@@ -1,5 +1,6 @@
 package br.com.clinvet.clinvetpet.pet.application.service;
 
+import java.util.List;
 import java.util.UUID;
 
 import javax.validation.Valid;
@@ -7,6 +8,7 @@ import javax.validation.Valid;
 import org.springframework.stereotype.Service;
 
 import br.com.clinvet.clinvetpet.cliente.application.service.ClienteService;
+import br.com.clinvet.clinvetpet.pet.application.api.PetListResponse;
 import br.com.clinvet.clinvetpet.pet.application.api.PetRequest;
 import br.com.clinvet.clinvetpet.pet.application.api.PetResponse;
 import br.com.clinvet.clinvetpet.pet.application.repository.PetRepository;
@@ -27,5 +29,13 @@ public class PetApplicationService implements PetService {
 		Pet pet = petRepository.salvaPet(new Pet(idCliente, petRequest));
 		log.info("[finaliza] PetApplicationService - criaPet");
 		return new PetResponse(pet.getIdPet());
+	}
+
+	@Override
+	public List<PetListResponse> buscaPetsDoClienteComId(UUID idCliente) {
+		log.info("[inicia] PetApplicationService - buscaPetsDoClienteComId");
+		clienteService.buscaClienteAtravesId(idCliente);
+		log.info("[finaliza] PetApplicationService - buscaPetsDoClienteComId");
+		return null;
 	}
 }
