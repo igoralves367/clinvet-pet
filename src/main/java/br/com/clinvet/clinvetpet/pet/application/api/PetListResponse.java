@@ -2,6 +2,7 @@ package br.com.clinvet.clinvetpet.pet.application.api;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import br.com.clinvet.clinvetpet.pet.domain.Pet;
 import br.com.clinvet.clinvetpet.pet.domain.Porte;
@@ -23,7 +24,19 @@ public class PetListResponse {
     
     
 	public static List<PetListResponse> converte(List<Pet> petsDoCliente) {
-		// TODO Auto-generated method stub
-		return null;
+		return petsDoCliente.stream()
+				.map(PetListResponse::new)
+				.collect(Collectors.toList());
+	}
+
+	public PetListResponse(Pet pet) {
+		this.nomePet = pet.getNomePet();
+		this.porte = pet.getPorte();
+		this.tipo = pet.getTipo();
+		this.raca = pet.getRaca();
+		this.sexo = pet.getSexo();
+		this.pelagemCor = pet.getPelagemCor();
+		this.dataNascimento = pet.getDataNascimento();
+		this.peso = pet.getPeso();
 	}
 }
