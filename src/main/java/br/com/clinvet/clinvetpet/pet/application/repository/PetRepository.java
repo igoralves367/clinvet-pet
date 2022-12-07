@@ -8,5 +8,6 @@ import br.com.clinvet.clinvetpet.pet.domain.Pet;
 public interface PetRepository {
 	Pet salvaPet(Pet pet);
 	List<Pet> buscaPetsDoClienteComId(UUID idCliente);
+	Pet buscaPetPeloId(UUID idPet);
 
 }
